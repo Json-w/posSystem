@@ -1,15 +1,18 @@
 package com.jason.pos;
 
-import java.util.List;
+public class SecondHalfPromotion implements Promotion {
+    public double promote(CarItem secondHalfPromotionItem) {
+        double saveMoney;
+        double afterPromotedPrice = caculateAfterPromotedPrice(secondHalfPromotionItem);
+        saveMoney = secondHalfPromotionItem.getItem().getPrice() * secondHalfPromotionItem.getAmount() - afterPromotedPrice;
+        return saveMoney;
+    }
 
-public class SecondHalfPromotion {
-    public double promote(List<CarItem> secondHalfPromotionItems) {
+    private double caculateAfterPromotedPrice(CarItem secondHalfPromotionItem) {
         double result = 0;
-        for (CarItem secondHalfPromotionItem : secondHalfPromotionItems) {
-            result += secondHalfPromotionItem.getItem().getPrice() * secondHalfPromotionItem.getAmount();
-            if (secondHalfPromotionItem.getAmount() >= 2) {
-                result -= (secondHalfPromotionItem.getAmount() / 2) * secondHalfPromotionItem.getItem().getPrice() * 0.5;
-            }
+        result += secondHalfPromotionItem.getItem().getPrice() * secondHalfPromotionItem.getAmount();
+        if (secondHalfPromotionItem.getAmount() >= 2) {
+            result -= (secondHalfPromotionItem.getAmount() / 2) * secondHalfPromotionItem.getItem().getPrice() * 0.5;
         }
         return result;
     }

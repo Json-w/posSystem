@@ -10,13 +10,22 @@ import static org.junit.Assert.assertThat;
 
 public class SecondHalfPromotionTest {
     @Test
-    public void test_promote_should_return_pay_price_when_input_2_second_half_promotion_item() throws Exception {
+    public void test_promote_should_return_save_money_when_input_2_second_half_promotion_item() throws Exception {
         SecondHalfPromotion secondHalfPromotion = new SecondHalfPromotion();
-        List<CarItem> secondHalfPromotionItems = new ArrayList<CarItem>();
-        secondHalfPromotionItems.add(new CarItem(new Item("ITEM000001", 40), 2));
+        CarItem secondHalfPromotionItem = new CarItem(new Item("ITEM000001", 40), 2);
 
-        double payPrice = secondHalfPromotion.promote(secondHalfPromotionItems);
+        double saveMoney = secondHalfPromotion.promote(secondHalfPromotionItem);
 
-        assertThat(payPrice,is(60.0));
+        assertThat(saveMoney,is(20.0));
+    }
+
+    @Test
+    public void test_promote_should_return_20_when_input_3_second_half_promotion_item() throws Exception {
+        SecondHalfPromotion secondHalfPromotion = new SecondHalfPromotion();
+        CarItem secondHalfPromotionItem = new CarItem(new Item("ITEM000001", 40), 3);
+
+        double saveMoney = secondHalfPromotion.promote(secondHalfPromotionItem);
+
+        assertThat(saveMoney,is(20.0));
     }
 }

@@ -3,7 +3,7 @@ package com.jason.pos;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ItemParser extends Parser {
+public class ItemParser extends Parser<Item> {
     private final Pattern PATTERN = Pattern.compile("^(\\w+):(\\d+)$");
 
 

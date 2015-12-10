@@ -1,4 +1,6 @@
-package com.jason.pos;
+package com.jason.pos.promotion;
+
+import com.jason.pos.model.CarItem;
 
 import java.util.ArrayList;
 import java.util.List;

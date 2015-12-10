@@ -1,4 +1,7 @@
-package com.jason.pos;
+package com.jason.pos.Parser;
+
+import com.jason.pos.promotion.DiscountPromotion;
+import com.jason.pos.promotion.Promotion;
 
 import java.util.HashMap;
 import java.util.Map;

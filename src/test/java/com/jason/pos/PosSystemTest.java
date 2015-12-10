@@ -1,5 +1,6 @@
 package com.jason.pos;
 
+import com.jason.pos.promotion.PromotionChain;
 import org.junit.Test;
 
 import java.util.Map;
@@ -53,6 +54,6 @@ public class PosSystemTest {
 
         double result = posSystem.caculate();
 
-        assertThat(result, is(308.0));
+        assertThat(result, is(258.0));
     }
 }

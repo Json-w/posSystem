@@ -1,4 +1,4 @@
-package com.jason.pos;
+package com.jason.pos.Parser;
 
 import java.util.ArrayList;
 import java.util.List;

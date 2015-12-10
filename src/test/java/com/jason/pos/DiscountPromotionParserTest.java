@@ -1,5 +1,8 @@
 package com.jason.pos;
 
+import com.jason.pos.Parser.DiscountPromotionParser;
+import com.jason.pos.Parser.Parser;
+import com.jason.pos.promotion.Promotion;
 import org.junit.Test;
 
 import java.util.ArrayList;

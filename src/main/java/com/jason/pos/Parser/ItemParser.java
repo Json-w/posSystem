@@ -1,4 +1,6 @@
-package com.jason.pos;
+package com.jason.pos.Parser;
+
+import com.jason.pos.model.Item;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

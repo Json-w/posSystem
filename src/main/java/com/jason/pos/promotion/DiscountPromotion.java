@@ -1,4 +1,6 @@
-package com.jason.pos;
+package com.jason.pos.promotion;
+
+import com.jason.pos.model.CarItem;
 
 public class DiscountPromotion implements Promotion {
     private double discount;

@@ -1,4 +1,7 @@
-package com.jason.pos;
+package com.jason.pos.promotion;
+
+import com.jason.pos.model.CarItem;
+import com.jason.pos.promotion.Promotion;
 
 public class SecondHalfPromotion implements Promotion {
     public double promote(CarItem secondHalfPromotionItem) {

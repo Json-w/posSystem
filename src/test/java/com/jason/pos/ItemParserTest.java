@@ -1,5 +1,7 @@
 package com.jason.pos;
 
+import com.jason.pos.Parser.ItemParser;
+import com.jason.pos.model.Item;
 import org.junit.Test;
 
 import java.util.ArrayList;

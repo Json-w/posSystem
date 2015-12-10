@@ -1,5 +1,8 @@
 package com.jason.pos;
 
+import com.jason.pos.Parser.Parser;
+import com.jason.pos.Parser.SecondHalfPricePromotionItemParser;
+import com.jason.pos.model.Item;
 import org.junit.Test;
 
 import java.util.ArrayList;

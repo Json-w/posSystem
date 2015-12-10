@@ -1,4 +1,4 @@
-package com.jason.pos;
+package com.jason.pos.common;
 
 import java.io.*;
 import java.util.ArrayList;

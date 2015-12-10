@@ -1,5 +1,6 @@
 package com.jason.pos;
 
+import com.jason.pos.common.FileReader;
 import org.junit.Test;
 
 import java.util.List;

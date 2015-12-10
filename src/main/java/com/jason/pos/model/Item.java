@@ -1,4 +1,4 @@
-package com.jason.pos;
+package com.jason.pos.model;
 
 public class Item {
     private String code;

@@ -1,5 +1,13 @@
 package com.jason.pos;
 
+import com.jason.pos.Parser.*;
+import com.jason.pos.common.FileReader;
+import com.jason.pos.model.CarItem;
+import com.jason.pos.model.Item;
+import com.jason.pos.promotion.Promotion;
+import com.jason.pos.promotion.PromotionChain;
+import com.jason.pos.promotion.SecondHalfPromotion;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +44,32 @@ public class PosSystem {
 
     public void setItems(List<Item> items) {
         this.items = items;
+    }
+
+    public void init() {
+        readItemFile(this.getClass().getClassLoader().getResource("itemlist.txt").getPath());
+        readDiscountPromotionFile(this.getClass().getClassLoader().getResource("discount_promotion.txt").getPath());
+        readSecondHalfPricePromotionFile(this.getClass().getClassLoader().getResource("second_half_price_promotion.txt").getPath());
+    }
+
+    public double caculate() {
+        double originalTotalPrice = 0;
+        double saveMoney = 0;
+        List<CarItem> carItems = readCarItemFile(this.getClass().getClassLoader().getResource("car.txt").getPath());
+        for (Item item : items) {
+            for (CarItem carItem : carItems) {
+                if (item.getCode().equals(carItem.getItem().getCode())) {
+                    carItem.setItem(item);
+                    originalTotalPrice += item.getPrice() * carItem.getAmount();
+                }
+            }
+        }
+        for (CarItem carItem : carItems) {
+            if (promotionMap.containsKey(carItem.getItem().getCode())) {
+                saveMoney += promotionMap.get(carItem.getItem().getCode()).promote(carItem);
+            }
+        }
+        return (originalTotalPrice - saveMoney);
     }
 
     public Map<String, PromotionChain> readSecondHalfPricePromotionFile(String promotionItemListFile) {
@@ -85,30 +119,6 @@ public class PosSystem {
         }
     }
 
-    public void init() {
-        readItemFile(this.getClass().getClassLoader().getResource("itemlist.txt").getPath());
-        readDiscountPromotionFile(this.getClass().getClassLoader().getResource("discount_promotion.txt").getPath());
-        readSecondHalfPricePromotionFile(this.getClass().getClassLoader().getResource("second_half_price_promotion.txt").getPath());
-    }
-
-    public double caculate() {
-        List<CarItem> carItems = readCarItemFile(this.getClass().getClassLoader().getResource("car.txt").getPath());
-        for (Item item : items) {
-            for (CarItem carItem : carItems) {
-                if (item.getCode().equals(carItem.getItem().getCode())) {
-                    carItem.setItem(item);
-                }
-            }
-        }
-        double result = 0;
-        for (CarItem carItem : carItems) {
-            if (promotionMap.containsKey(carItem.getItem().getCode())) {
-                promotionMap.get(carItem.getItem().getCode()).promote(carItem);
-            }
-            result += (carItem.getItem().getPrice() * carItem.getAmount());
-        }
-        return result;
-    }
 
     private List<CarItem> readCarItemFile(String carItemFile) {
         List<CarItem> result = null;

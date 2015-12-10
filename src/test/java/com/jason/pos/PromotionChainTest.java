@@ -1,5 +1,10 @@
 package com.jason.pos;
 
+import com.jason.pos.model.CarItem;
+import com.jason.pos.model.Item;
+import com.jason.pos.promotion.DiscountPromotion;
+import com.jason.pos.promotion.PromotionChain;
+import com.jason.pos.promotion.SecondHalfPromotion;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -15,6 +20,17 @@ public class PromotionChainTest {
 
         double result = promotionChain.promote(carItem);
 
-        assertThat(result,is(125.0));
+        assertThat(result, is(125.0));
+    }
+
+    @Test
+    public void test_promote_should_return_50_when_input_item_price_100_amount_2() {
+        PromotionChain promotionChain = new PromotionChain();
+        promotionChain.addPromotion(new SecondHalfPromotion());
+        CarItem carItem = new CarItem(new Item("ITEM000001", 100), 2);
+
+        double result = promotionChain.promote(carItem);
+
+        assertThat(result, is(50.0));
     }
 }

@@ -1,5 +1,8 @@
 package com.jason.pos;
 
+import com.jason.pos.model.CarItem;
+import com.jason.pos.model.Item;
+import com.jason.pos.promotion.DiscountPromotion;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

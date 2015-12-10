@@ -20,4 +20,8 @@ public class PromotionChain implements Promotion {
     public void addPromotion(Promotion promotion) {
         promotions.add(promotion);
     }
+
+    public List<Promotion> getPromotions() {
+        return promotions;
+    }
 }

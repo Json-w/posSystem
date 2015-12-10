@@ -1,13 +1,10 @@
 package com.jason.pos;
 
 import org.junit.Test;
-import org.mockito.internal.matchers.NotNull;
 
-import java.util.List;
 import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 public class PosSystemTest {
@@ -29,4 +26,33 @@ public class PosSystemTest {
         assertThat(result.get("ITEM000001"), is(PromotionChain.class));
     }
 
+    @Test
+    public void test_read_discount_promotion_file_should_return_map_when_input_file_path() throws Exception {
+        String discountPromotionFile = this.getClass().getClassLoader().getResource("discount_promotion.txt").getPath();
+        PosSystem posSystem = new PosSystem();
+
+        Map<String, PromotionChain> result = posSystem.readDiscountPromotionFile(discountPromotionFile);
+
+        assertThat(result.get("ITEM000001"), is(PromotionChain.class));
+    }
+
+    @Test
+    public void test_initPosSystem_should_load_item_and_promotionMap() throws Exception {
+        PosSystem posSystem = new PosSystem();
+
+        posSystem.init();
+
+        assertThat(posSystem.getItems().size(), is(3));
+        assertThat(posSystem.getPromotionMap().get("ITEM000001").getPromotions().size(), is(2));
+    }
+
+    @Test
+    public void test_caculate_should_return_price_after_promoted() throws Exception {
+        PosSystem posSystem = new PosSystem();
+        posSystem.init();
+
+        double result = posSystem.caculate();
+
+        assertThat(result, is(308.0));
+    }
 }
